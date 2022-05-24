@@ -36,11 +36,15 @@ searchBtn.addEventListener('click', function (event) {
             tempMain.innerHTML = result.main.temp;
             cityTab.innerHTML = result.name;
 
-            favoriteCity.addEventListener('click', function addCity() {
-                let li = document.createElement('li');
-                li.innerHTML = result.name;
-                listFavoriteCity.append(li);
-                li = '';
+            favoriteCity.addEventListener('click', function (result) {
+
+                if (listFavoriteCity.contains !== result.name) {
+                    let li = document.createElement('li');
+                    li.innerHTML = result.name;
+                    listFavoriteCity.append(li);
+                } else {
+                    console.log('error')
+                }
             });
         }
     ).catch(error => alert('error'));
