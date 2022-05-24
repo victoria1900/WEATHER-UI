@@ -36,16 +36,25 @@ searchBtn.addEventListener('click', function (event) {
             tempMain.innerHTML = result.main.temp;
             cityTab.innerHTML = result.name;
 
-            favoriteCity.addEventListener('click', function (result) {
+            favoriteCity.addEventListener('click', function () {
+                let li = document.createElement('li');
+                li.className = ('main-list__item');
+                li.innerHTML = `${result.name}
+                    <button class="main-list__button"> ✘ </button>`;
+                listFavoriteCity.append(li);
 
-                if (listFavoriteCity.contains !== result.name) {
-                    let li = document.createElement('li');
-                    li.innerHTML = result.name;
-                    listFavoriteCity.append(li);
-                } else {
-                    console.log('error')
-                }
+                const removeCity = document.querySelector('.main-list__button');
+
+                removeCity.addEventListener('click', function () {
+                    li.remove();
+                });
+                li.addEventListener('click', function () {
+                    mainIcon.src = `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
+                    tempMain.innerHTML = result.main.temp;
+                    cityTab.innerHTML = result.name;
+                });
             });
+
         }
     ).catch(error => alert('error'));
 
