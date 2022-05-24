@@ -31,11 +31,18 @@ searchBtn.addEventListener('click', function (event) {
             return result;
         }
     ).then(
-        function(result){
+        function (result) {
             mainIcon.src = `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
             tempMain.innerHTML = result.main.temp;
             cityTab.innerHTML = result.name;
+
+            favoriteCity.addEventListener('click', function addCity() {
+                let li = document.createElement('li');
+                li.innerHTML = result.name;
+                listFavoriteCity.append(li);
+                li = '';
+            });
         }
-    )
+    ).catch(error => alert('error'));
 
 });
