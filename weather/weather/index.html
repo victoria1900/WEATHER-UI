@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <main class="main">
+      <div class="container">
+        <div class="main__inner">
+          <div class="main__conteiner">
+            <form class="main__form" action="#">
+              <label class="sr-only">select city</label>
+              <input
+                class="main__input"
+                type="text"
+                required
+                placeholder="enter city"
+              />
+              <button class="main__search animation" type="submit">
+                <svg class="main__search-img">
+                  <use xlink:href="images/search.svg#search"></use>
+                </svg>
+              </button>
+            </form>
+
+            <div class="main__box">
+              <div class="main__content">
+                <div class="main__box-info">
+                  <div
+                    class="main__info main__main-info main__info--active"
+                    id="tab-1"
+                  >
+                    <img class="icon" src="#" alt="" />
+
+                    <div class="box">
+                      <span class="main__temperature"></span>
+                      <div class="main__case">
+                        <h3 class="main__city"></h3>
+                        <button class="main__btn-heart" type="button">
+                          <svg
+                            class="main__heart"
+                            width="24"
+                            height="25"
+                            viewBox="0 0 24 25"
+                          >
+                            <!-- <use xlink:href="images/heart.svg#heart"></use> -->
+                            <path
+                              opacity="0.54"
+                              clip-rule="evenodd"
+                              d="M17.5 1C15.0556 1 12.8556 2.7875 12 5.125C11.1444 2.7875 8.94444 1 6.5 1C3.44444 1 1 3.6125 1 7.1875C1 12 5.27778 16.125 12 23C18.7222 16.125 23 12 23 7.1875C23 3.6125 20.5556 1 17.5 1Z"
+                              stroke-width="2"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="main__info main__short-info" id="tab-2">
+                    <h3 class="main__info-city main__city" id="details_city">
+                      Aktobe
+                    </h3>
+                    <ul class="main__info-list">
+                      <li class="main__info-item">
+                        Temperature: <span id="details_temp">14°</span>
+                      </li>
+                      <li class="main__info-item">
+                        Feels like: <span id="details_feels">10°</span>
+                      </li>
+                      <li class="main__info-item">
+                        Weather: <span id="details_weather">Clouds</span>
+                      </li>
+                      <li class="main__info-item">
+                        Sunrise: <span id="sunrise">03:21</span>
+                      </li>
+                      <li class="main__info-item">
+                        Sunset: <span id="sunset">18:54</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="main__info main__hourly-info" id="tab-3">
+                    <h3
+                      class="main__info-city main__city main__info-city--tab-3"
+                    >
+                      DEFAULT
+                    </h3>
+                    <div class="forecast__list">
+                    <article class="card-weather">
+                      <div class="card-weather__top">
+                        <time class="card-weather__date">17 May</time>
+                        <time class="card-weather__time">12:00</time>
+                      </div>
+
+                      <div class="card-weather__bottom">
+                        <div class="card-weather__box">
+                          <span class="card-weather__temperature"
+                            >Temperature: <span id="forecastTemp"></span>13°</span
+                          >
+                          <span class="card-weather__temperature"
+                            >Feels like: <span id="forecastTempFeels">temp</span></span
+                          >
+                        </div>
+
+                        <div class="card-weather__box">
+                            <img src="#" alt="">
+                          Rain
+                        </div>
+                      </div>
+                    </article>
+                    </div>
+                  </div>
+                </div>
+                <nav class="main__box-tabs">
+                  <a
+                    class="main__tab main__tab--active animation"
+                    data-tab="tab-1"
+                    href="#"
+                  >
+                    Now
+                  </a>
+                  <a class="main__tab animation" data-tab="tab-2" href="#">
+                    Details
+                  </a>
+                  <a class="main__tab animation" data-tab="tab-3" href="#">
+                    Forecast
+                  </a>
+                </nav>
+              </div>
+
+              <div class="main__cites">
+                <h3 class="main__title">Added Locations:</h3>
+                <ul class="main__list">
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script type="module" src="js/main.js"></script>
+</html>
