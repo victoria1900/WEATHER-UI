@@ -1,6 +1,15 @@
+import {
+    UI_ELEMENTS
+} from "./view.js";
+import {
+    tabsButtonsListener
+} from "./tabs.js";
+import {
+    UI_DETAILS
+} from "./view.js";
+
 const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
 const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
-
 
 const search = document.querySelector('.main__input');
 const searchBtn = document.querySelector('.main__search');
@@ -10,16 +19,24 @@ const listFavoriteCity = document.querySelector('.main__list');
 const tempMain = document.querySelector('.main__temperature');
 const mainIcon = document.querySelector('.icon');
 
+
 searchBtn.addEventListener('click', function (event) {
     event.preventDefault();
-
+    console.log(event);
     const cityName = search.value;
-    const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
-
+    getResponse(cityName);
     search.value = '';
+});
 
+tabsButtonsListener(UI_ELEMENTS.TABS.SECTIONS_BUTTONS);
+
+function getResponse(cityName) {
+    const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
     let promise = fetch(url);
+    getPromise(promise);
+}
 
+function getPromise(promise) {
     promise.then(
         function (result) {
             console.log(result);
@@ -31,16 +48,16 @@ searchBtn.addEventListener('click', function (event) {
             return result;
         }
     ).then(
-        function (result) {
+        function getResultNow(result) {
             mainIcon.src = `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
-            tempMain.innerHTML = result.main.temp;
+            tempMain.innerHTML = Math.round(result.main.temp);
             cityTab.innerHTML = result.name;
 
             favoriteCity.addEventListener('click', function () {
                 let li = document.createElement('li');
                 li.className = ('main-list__item');
                 li.innerHTML = `${result.name}
-                    <button class="main-list__button"> ✘ </button>`;
+             <button class="main-list__button"> ✘ </button>`;
                 listFavoriteCity.append(li);
 
                 const removeCity = document.querySelector('.main-list__button');
@@ -48,6 +65,8 @@ searchBtn.addEventListener('click', function (event) {
                 removeCity.addEventListener('click', function () {
                     li.remove();
                 });
+
+
                 li.addEventListener('click', function () {
                     mainIcon.src = `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
                     tempMain.innerHTML = result.main.temp;
@@ -55,7 +74,19 @@ searchBtn.addEventListener('click', function (event) {
                 });
             });
 
-        }
-    ).catch(error => alert('error'));
+            getDetails(result)
 
-});
+        }
+    ).catch(alert);
+};
+
+
+
+function getDetails(result) {
+    UI_DETAILS.CITY.innerHTML = `${result.name}`;
+    UI_DETAILS.TEMP.innerHTML = Math.round(`${result.main.temp}`);
+    UI_DETAILS.FEELS.innerHTML = Math.round(`${result.main.feels_like}`);
+    UI_DETAILS.WEATHER.innerHTML = `${result.weather[0].main}`;
+    UI_DETAILS.SUNRISE.innerHTML = `${result.sys.sunrise}`;
+    UI_DETAILS.SUNSET.innerHTML = `${result.sys.sunset}`;
+};

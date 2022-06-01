@@ -161,9 +161,10 @@ body {
   height: 25px;
   fill: transparent;
 }
-.main__btn-heart--active .main__heart{
-    stroke: red;
-    fill: red;
+
+.main__btn-heart--active .main__heart {
+  stroke: red;
+  fill: red;
 }
 
 .main__short-info {
@@ -217,9 +218,11 @@ body {
   max-width: 140px;
   height: 47px;
 }
+
 .card-weather__box--right {
   align-items: center;
 }
+
 .card-weather__box img {
   margin-top: -10px;
   width: 35px;
@@ -261,6 +264,7 @@ body {
   border-bottom: 1px solid #000000;
   padding: 33px 5px 7px 18px;
 }
+
 .main__cites {
   flex-basis: 50%;
   font-size: 24px;
@@ -268,6 +272,7 @@ body {
   max-height: 389px;
   overflow-y: auto;
 }
+
 .main__list {
   padding: 28px 5px 5px 18px;
 }
@@ -277,7 +282,9 @@ body {
   width: 100%;
   text-align: left;
 }
-.main-list__item{
+
+.main-list__item {
   display: flex;
   justify-content: space-between;
 }
+
