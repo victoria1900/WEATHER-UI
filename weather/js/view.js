@@ -40,3 +40,8 @@ export const UI_DETAILS = {
     SUNRISE: document.querySelector('#sunrise'),
     SUNSET: document.querySelector('#sunset'),
 };
+
+export const UI_FORECAST = {
+    CITY: document.querySelector('.main__info-city--tab-3'),
+    DATE: document.querySelector('.card-weather__date'),
+}

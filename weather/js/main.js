@@ -7,6 +7,9 @@ import {
 import {
     UI_DETAILS
 } from "./view.js";
+import {
+    UI_FORECAST
+} from "./view.js";
 
 const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
 const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
@@ -36,8 +39,8 @@ function getResponse(cityName) {
     getPromise(promise);
 }
 
-function getPromise(promise) {
-    promise.then(
+async function getPromise(promise) {
+    await promise.then(
         function (result) {
             console.log(result);
             return result.json();
@@ -73,13 +76,13 @@ function getPromise(promise) {
                     cityTab.innerHTML = result.name;
                 });
             });
-
+            localStorage.setItem('item', 1)
+            console.log(localStorage.getItem('item'))
             getDetails(result)
-
+            getForecast(result)
         }
     ).catch(alert);
 };
-
 
 
 function getDetails(result) {
@@ -90,3 +93,16 @@ function getDetails(result) {
     UI_DETAILS.SUNRISE.innerHTML = `${result.sys.sunrise}`;
     UI_DETAILS.SUNSET.innerHTML = `${result.sys.sunset}`;
 };
+
+function getForecast(result) {
+    UI_FORECAST.CITY.innerHTML = `${result.name}`;
+};
+
+const favoriteCities = localStorage.setItem('getDetails', getDetails.toString());
+console.log(localStorage.getItem('getDetails'))
+
+const myName = 'viki';
+localStorage.setItem('name', myName);
+console.log(localStorage.getItem('name'));
+
+
